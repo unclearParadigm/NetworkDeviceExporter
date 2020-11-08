@@ -40,5 +40,4 @@ These are devices that are monitored additionally to the (optionally) provided H
 """
 CustomNetworkDevices = [
     HostEntry('127.0.0.1', ['localhost.local']),
-    HostEntry('10.0.100.1', ['rt-denc-vpngate.rtrace.home', 'vpngate.rtrace.io'])
 ]
