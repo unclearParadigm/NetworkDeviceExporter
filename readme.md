@@ -97,12 +97,12 @@ Platform-independent at the moment.
 
 ```
 # Short eaxmple of exported fields
-nde.ping.ok{target_hostname="localhost"} 1
-nde.ping.size{target_hostname="localhost"} 64
-nde.ping.time{target_hostname="localhost"} 0.087
-nde.ping.ok{target_hostname="localhost.localdomain"} 1
-nde.ping.size{target_hostname="localhost.localdomain"} 64
-nde.ping.time{target_hostname="localhost.localdomain"} 0.087
+nde_ping_ok{target_hostname="localhost"} 1
+nde_ping_size{target_hostname="localhost"} 64
+nde_ping_time{target_hostname="localhost"} 0.087
+nde_ping_ok{target_hostname="localhost.localdomain"} 1
+nde_ping_size{target_hostname="localhost.localdomain"} 64
+nde_ping_time{target_hostname="localhost.localdomain"} 0.087
 ```
 
 | Metric        | Value(s)                | Description                                                                    |
