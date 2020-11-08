@@ -14,7 +14,7 @@ class Ping(object):
     def ping(self) -> None:
         try:
             ping_cmd = [configuration.PingExecutableLocation, '-c', '1', self.hostentry.ip]
-            output = subprocess.run(ping_cmd, shell=False, capture_output=True, text=True).stdout
+            output = subprocess.run(ping_cmd, shell=False, stdout=subprocess.PIPE, encoding='utf-8').stdout
             for line in output.split('\n'):
                 if not line:
                     break
