@@ -28,4 +28,3 @@ def parse_from_hostfile_row(row: str) -> (bool, HostEntry):
         return False, 'There is not enough entries containing Hostnames'
 
     return True, HostEntry(ip, hostnames)
-

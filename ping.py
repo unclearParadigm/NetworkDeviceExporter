@@ -40,5 +40,3 @@ class Ping(object):
             metric_collection.append('nde_ping_size{target_hostname="' + hostname + '"} ' + str(self.ping_size))
             metric_collection.append('nde_ping_time{target_hostname="' + hostname + '"} ' + str(self.ping_time))
         return metric_collection
-
-
