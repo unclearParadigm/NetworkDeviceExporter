@@ -124,4 +124,4 @@ nde_ping_time{target_hostname="localhost.localdomain"} 0.087
 |:-------------:|:-----------------------:|:------------------------------------------------------------------------------:|
 | nde_ping_ok   | 0 or 1                  | 1 indicates that the hostname was successfully pingable, 0 indicates a failure |
 | nde_ping_size | icmp-ping size in bytes | indicates the ICMP-request size                                                |
-| nde_ping_time | time in milliseconds    | indicates how it took the specified hostname to respond to the ICMP ping       |
+| nde_ping_time | time in milliseconds    | indicates how long it took the specified hostname to respond to the ICMP ping  |
