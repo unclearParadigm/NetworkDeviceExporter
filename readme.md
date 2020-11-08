@@ -1,5 +1,7 @@
 # Network Device Exporter
 
+[![Code Climate](https://codeclimate.com/github/unclearParadigm/NetworkDeviceExporter/badges/gpa.svg)](https://codeclimate.com/github/dwyl/esta)
+
 NDE (short for Network Device Exporter) is a Prometheus-compatible Exporter, that
 parses Hostfile(s) like ```/etc/hosts```, or any file that 
 [dnsmasq](https://en.wikipedia.org/wiki/Dnsmasq) would parse. NDE will perform
