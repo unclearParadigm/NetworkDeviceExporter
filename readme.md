@@ -6,8 +6,19 @@ parses Hostfile(s) like ```/etc/hosts```, or any file that
 Pings to devices in such files and export the results. 
 
 This exporter is aimed to be working in Linux/UNIX-oid environments (even though it should work on Windows as well).
-It is written in native Python without any third-party-dependencies, and works with any Python Interpreter >= 3.5.
+It is written in native Python without any third-party-dependencies, and works with any Python Interpreter >= 3.6.
 
+### Why do I need this?
+
+Some (but not limited to) example use-cases:
+- Uptime monitoring of Network-Devices
+- Verification that routes to specific host are correctly configured
+- simplistic way of ensuring Network-integrity and stability
+- monitor network-performance in a simple way
+- Alerts on presence detection (e.g. a mobile phone connects to your Wifi)
+- VPN (e.g. Wireguard, OpenVPN) user-behavior analytics
+
+Feel free to tell me, what you are using it for.
 
 ### How can I run it?
 
@@ -17,7 +28,7 @@ getting started with NDE is as simple as cloning and running it.
 ```bash
 git clone git@github.com:unclearParadigm/NetworkDeviceExporter.git
 cd NetworkDeviceExporter
-python nde.py
+python3 nde.py
 
 # Verify that NDE is running (by default it is listening on Port 2020)
 curl http://localhost:2020
@@ -38,11 +49,11 @@ useradd -r -s /bin/false networkdeviceexporter
 
 If your system is using SELinux (e.g. RedHat-based Distributions), make sure you put
 your script in a place where scripts/application can be executed per default, or configure
-SELinux accordingly to allow execution.
+SELinux accordingly to allow execution. Recommended destination is `/usr/local/bin`
 
 ```bash
 # clone Repo to home/bin directory of the newly created user
-git clone git@github.com:unclearParadigm/NetworkDeviceExporter.git /home/networkdeviceexporter/bin/NetworkDeviceExporter
+git clone git@github.com:unclearParadigm/NetworkDeviceExporter.git /usr/local/bin/NetworkDeviceExporter
 ```
 
 It is also recommended to let systemd manage the lifecycle of your Exporter (if your Distribution runs systemd).
@@ -57,10 +68,9 @@ After=multi-user.target
 Type=simple
 User=networkdeviceexporter
 Group=networkdeviceexporter
-WorkingDirectory=/home/networkdeviceexporter/bin/NetworkDeviceExporter
-ExecStart=/home/networkdeviceexporter/bin/NetworkDeviceExporter/nde.py
+ExecStart=python3 /usr/local/bin/NetworkDeviceExporter/nde.py
 Restart=always
-RestartSec=3
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
@@ -86,12 +96,17 @@ systemctl status NetworkDeviceExporter
 ### How can I configure it?
 
 Inside the previously cloned directory, there is a file called [configuration.py](configuration.py). This is
-where the all the configuration for NDE resides. The File itself is sufficiently documented
+where the all the configuration for NDE resides. The file itself is sufficiently documented
 with comments and should be fairly self-descriptive.
 
 One thing, that might be a bit weird at the moment is the fact that you have to configure
 the location of your Ping-Executable. This is the only possibility to keep the application
-Platform-independent at the moment.
+platform-independent at the moment.
+
+- The default ListenPort is `2020`
+- The default file that is read is `/etc/hosts`
+- You can add other files to that collection (just make sure the files are read-accessible)
+- The default location of the Ping executable points to `/bin/ping` (which should be fine on most distributions)
 
 ### What does it export?
 
